@@ -15,19 +15,13 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
-
-import org.eclipse.microprofile.openapi.annotations.Operation;
-import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
-import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
-import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.jboss.logging.Logger;
 import org.relatech.model.User;
 import org.relatech.repository.UserRepository;
 
 
 @Path("/loggin")
-@Tag(name = "Registration", description = "Methods used for user registration")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class LoginController implements LoginControllerInterface {
@@ -52,20 +46,6 @@ public class LoginController implements LoginControllerInterface {
 
 	@GET
 	@Path("/access")
-	@Operation(
-			operationId = "loggin",
-			description = "LOGGIN"
-			)
-	@APIResponse(
-			responseCode = "200",
-			description = "Operation completed",
-			content = @Content(mediaType = MediaType.APPLICATION_JSON)
-			)
-	@APIResponse(
-			responseCode = "400",
-			description = "Access denied",
-			content = @Content(mediaType = MediaType.APPLICATION_JSON)
-			)
 	@Override
 	public Response loggin(
 			@Parameter(
@@ -95,15 +75,6 @@ public class LoginController implements LoginControllerInterface {
 	@PUT
 	@Path("/updatePassword")
 	@Transactional
-	@Operation(
-			operationId = "uP",
-			description = "UPDATE PASSWORD WITH EMAIL"
-			)
-	@APIResponse(
-			responseCode = "200",
-			description = "Operation completed",
-			content = @Content(mediaType = MediaType.APPLICATION_JSON)
-			)
 	@Override
 	public Response uP(
 			@Parameter(

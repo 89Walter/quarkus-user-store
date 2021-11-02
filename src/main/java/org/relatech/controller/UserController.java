@@ -15,12 +15,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
-
-import org.eclipse.microprofile.openapi.annotations.Operation;
-import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
-import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
-import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 import org.jboss.logging.Logger;
 import org.relatech.model.User;
@@ -29,7 +24,6 @@ import org.relatech.restclient.BookClient;
 import org.relatech.restclient.BookUserDTO;
 
 @Path("/users")
-@Tag(name = "Control user", description = "Methods used for user control")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class UserController implements UserControllerInterface {
@@ -62,20 +56,6 @@ public class UserController implements UserControllerInterface {
 
 	@GET
 	@Path("/getAll")
-	@Operation(
-			operationId = "getAllUsers",
-			description = "GIVE ME ALL USERS INSIDE THE DB"
-			)
-	@APIResponse(
-			responseCode = "200",
-			description = "Operation completed",
-			content = @Content(mediaType = MediaType.APPLICATION_JSON)
-			)
-	@APIResponse(
-			responseCode = "400",
-			description = "Empty users",
-			content = @Content(mediaType = MediaType.APPLICATION_JSON)
-			)
 	@Override
 	public Response getAllUsers() {
 		List<User> users = userRepository.listAll();
@@ -87,20 +67,6 @@ public class UserController implements UserControllerInterface {
 
 	@GET
 	@Path("/getUser")
-	@Operation(
-			operationId = "getByFiscalCode",
-			description = "GIVE ME USER WITH FISCAL CODE"
-			)
-	@APIResponse(
-			responseCode = "200",
-			description = "Operation completed",
-			content = @Content(mediaType = MediaType.APPLICATION_JSON)
-			)
-	@APIResponse(
-			responseCode = "400",
-			description = "Fiscal code empty!",
-			content = @Content(mediaType = MediaType.APPLICATION_JSON)
-			)
 	@Override
 	public Response getByFiscalCode(
 			@Parameter(
@@ -122,20 +88,6 @@ public class UserController implements UserControllerInterface {
 	@DELETE
 	@Path("/deleteUsers")
 	@Transactional
-	@Operation(
-			operationId = "deleteUserById",
-			description = "DELETE USER WITH ID"
-			)
-	@APIResponse(
-			responseCode = "204",
-			description = "Operation completed",
-			content = @Content(mediaType = MediaType.APPLICATION_JSON)
-			)
-	@APIResponse(
-			responseCode = "404",
-			description = "User id not valid",
-			content = @Content(mediaType = MediaType.APPLICATION_JSON)
-			)
 	@Override
 	public Response deleteUserById(
 			@Parameter(

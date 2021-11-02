@@ -9,11 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
-import org.eclipse.microprofile.openapi.annotations.media.Schema;
-
 @Entity
 @Table(name = "users")
-@Schema(name =  "User", description = "all values")
 public class User {
 
 	@Id
